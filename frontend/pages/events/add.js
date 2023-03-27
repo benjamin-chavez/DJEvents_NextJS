@@ -36,7 +36,7 @@ export default function AddEventPage() {
     const res = await fetch(`${API_URL}/events`, {
       method: 'POST',
       headers: {
-        'Conent-Type': 'application/json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(values),
     });
