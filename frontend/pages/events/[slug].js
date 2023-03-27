@@ -1,3 +1,5 @@
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { FaPencilAlt, FaTimes } from 'react-icons/fa';
 import { useRouter } from 'next/router';
 import Layout from '@/components/Layout';
@@ -8,12 +10,23 @@ import Image from 'next/image';
 
 export default function EventPage({ evt }) {
   const evtDate = new Date(evt.date).toLocaleDateString('en-US');
-
-  const deleteEvent = (e) => {
-    console.log('delete');
-  };
-
   const router = useRouter();
+
+  const deleteEvent = async (e) => {
+    if (confirm('Are you sure?')) {
+      const res = await fetch(`${API_URL}/events/${evt.id}`, {
+        method: 'DELETE',
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        toast.error(data.message);
+      } else {
+        router.push('/events');
+      }
+    }
+  };
 
   // console.log(router);
   return (
@@ -21,6 +34,7 @@ export default function EventPage({ evt }) {
       {/* <h3>{router.query.slug}</h3> */}
       {/* <button onClick={() => router.push('/')}>Click</button> */}
       <h1>{evt.name}</h1>
+      <ToastContainer />
       <div className={styles.event}>
         <div className={styles.controls}>
           <Link href={`/events/edit/${evt.id}`} legacyBehavior>
