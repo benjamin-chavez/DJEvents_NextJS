@@ -1,6 +1,8 @@
 import { createContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { NEXT_URL } from '@/config';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AuthContext = createContext();
 
@@ -31,12 +33,14 @@ export const AuthProvider = ({ children }) => {
 
     const data = await res.json();
 
-    console.log(data);
+    // console.log(data);
 
     if (res.ok) {
       setUser(data.user);
     } else {
-      setError(data.message);
+      // setError(data.message);
+
+      toast.error(data.message);
       setError(null);
     }
   };

@@ -5,7 +5,7 @@ import { useState, useEffect, useContext } from 'react';
 import Link from 'next/link';
 import Layout from '@/components/Layout';
 import AuthContext from '@/context/AuthContext';
-import styles from '@/styles/AuthoForm.module.css';
+import styles from '@/styles/AuthForm.module.css';
 
 export default function RegisterPage() {
   const [username, setUsername] = useState('');
