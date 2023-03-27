@@ -1,8 +1,8 @@
 ```bash
 # FRONTEND
 npx create-next-app@latest frontend
-npm i react-icons
-npm i
+npm i react-icons qs
+npm i qs
 ```
 
 ```bash

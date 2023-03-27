@@ -3,6 +3,8 @@ import Image from 'next/image';
 import styles from '@/styles/EventItem.module.css';
 
 export default function EventItem({ evt }) {
+  const evtDate = new Date(evt.date).toLocaleDateString('en-US');
+
   return (
     <div className={styles.event}>
       <div className={styles.img}>
@@ -20,7 +22,7 @@ export default function EventItem({ evt }) {
       <div className={styles.info}>
         <span>
           {/* {evt.date} at {evt.time} */}
-          {new Date(evt.date).toLocaleDateString} at {evt.time}
+          {evtDate} at {evt.time}
         </span>
         <h3>{evt.name}</h3>
       </div>

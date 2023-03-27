@@ -7,13 +7,15 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export default function EventPage({ evt }) {
+  const evtDate = new Date(evt.date).toLocaleDateString('en-US');
+
   const deleteEvent = (e) => {
     console.log('delete');
   };
 
   const router = useRouter();
 
-  console.log(router);
+  // console.log(router);
   return (
     <Layout>
       {/* <h3>{router.query.slug}</h3> */}
@@ -32,7 +34,7 @@ export default function EventPage({ evt }) {
         </div>
 
         <span>
-          {new Date(evt.date).toLocaleDateString} at {evt.time}
+          {evtDate} at {evt.time}
         </span>
 
         {evt.image && (
