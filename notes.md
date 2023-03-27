@@ -4,6 +4,7 @@ npx create-next-app@latest frontend
 npm i react-icons qs
 npm i qs
 npm i react-toastify
+npm i moment
 ```
 
 ```bash
