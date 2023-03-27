@@ -13,6 +13,9 @@ export default function LoginPage() {
 
   const { login, error } = useContext(AuthContext);
 
+  // FIXME:TEST THIS
+  useEffect(() => error && toast.error(error));
+
   const handleSubmit = (e) => {
     e.preventDefault();
     login({ email, password });
