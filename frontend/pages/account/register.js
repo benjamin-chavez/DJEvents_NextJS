@@ -15,6 +15,8 @@ export default function RegisterPage() {
 
   const { register, error } = useContext(AuthContext);
 
+  // useEffect(() => error && toast.error(error));
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log({ email, password });
@@ -75,7 +77,7 @@ export default function RegisterPage() {
             />
           </div>
 
-          <input type="submit" vlaue="Login" className="btn" />
+          <input type="submit" vlaue="Register" className="btn" />
 
           <p>
             Already have an account?{' '}
