@@ -10,6 +10,25 @@ export const AuthProvider = ({ children }) => {
   // const [user, setUser] = useState({ name: 'Ben' });
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
+  const router = useRouter();
+
+  // useEffect(() => checkUserLoggedIn(), [checkUserLoggedIn]);
+
+  // useEffect(() => {
+  //   const checkUserLoggedIn = async () => {
+  //     const res = await fetch(`${NEXT_URL}/api/user`);
+  //     console.log(res);
+  //     const data = await res.json();
+
+  //     if (res.ok) {
+  //       setUser(data.user);
+  //     } else {
+  //       setUser(null);
+  //     }
+  //   };
+
+  //   checkUserLoggedIn(user);
+  // });
 
   // Register User
   const register = async (user) => {
@@ -37,22 +56,37 @@ export const AuthProvider = ({ children }) => {
 
     if (res.ok) {
       setUser(data.user);
+      // router.push('/account/dashboard');
     } else {
       // setError(data.message);
-
-      toast.error(data.message);
+      // toast.error(data.message);
       setError(null);
     }
   };
 
   // Logout User
   const logout = async () => {
-    console.log('Logout');
+    // console.log('Logout');
+    const res = await fetch(`${NEXT_URL}/api/logout`, {
+      method: 'POST',
+    });
+
+    if (res.ok) {
+      setUser(null);
+      router.push('/');
+    }
   };
 
   // Check if use is logged in
   const checkUserLoggedIn = async (user) => {
-    console.log('Check');
+    const res = await fetch(`${NEXT_URL}/api/user`);
+    const data = await res.json();
+
+    if (res.ok) {
+      setUser(data.user);
+    } else {
+      setUser(null);
+    }
   };
 
   return (
